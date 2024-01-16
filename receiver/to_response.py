@@ -1,6 +1,14 @@
-import random
+
 
 from modules.temp_sens import TempSensor
+from datetime import datetime
+
+
+def get_current_time():
+    # Aktuelle Uhrzeit und Datum abrufen
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    return current_time
 
 
 class Response:
@@ -15,6 +23,14 @@ class Response:
                     f'Die Temperatur beträgt {self.temp_sensor.measure_temp()} Grad Celsius.',
                     f'Aktuell sind es {self.temp_sensor.measure_temp()} Grad Celsius.',
                     f'Wir haben gerade {self.temp_sensor.measure_temp()} Grad Celsius.'
+                ],
+            },
+            ("uhrzeit",): {
+                "function": get_current_time,
+                "return": [
+                    f'Die aktuelle Uhrzeit ist {get_current_time()}.',
+                    f'Es ist momentan {get_current_time()} Uhr.',
+                    f'Jetzt ist es {get_current_time()}.'
                 ],
             },
         }
